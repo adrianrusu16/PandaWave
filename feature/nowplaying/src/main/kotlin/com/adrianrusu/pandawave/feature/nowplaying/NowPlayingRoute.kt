@@ -36,9 +36,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -48,6 +48,8 @@ import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.adrianrusu.pandawave.core.common.log.PandaLog
+import com.adrianrusu.pandawave.core.designsystem.icons.PandaIcon
+import com.adrianrusu.pandawave.core.designsystem.icons.PandaWaveIcons
 import com.adrianrusu.pandawave.core.designsystem.tokens.LocalPandaWaveDesignTokens
 import com.adrianrusu.pandawave.core.designsystem.tokens.appContentPadding
 import com.adrianrusu.pandawave.core.designsystem.tokens.cardResting
@@ -72,7 +74,6 @@ import com.adrianrusu.pandawave.core.ui.artwork.BambooArtworkModel
 import com.adrianrusu.pandawave.core.ui.artwork.toBambooArtworkModel
 import com.adrianrusu.pandawave.core.ui.audio.visualizer.BambooVoiceIndicator
 import com.adrianrusu.pandawave.core.ui.focus.bambooBringIntoViewOnFocus
-import com.adrianrusu.pandawave.core.ui.icons.PandaWaveIcons
 import com.adrianrusu.pandawave.core.ui.playback.BambooPlayPauseButton
 import com.adrianrusu.pandawave.core.ui.playback.BambooPlaybackControlSize
 import com.adrianrusu.pandawave.feature.nowplaying.domain.NowPlayingIntent
@@ -468,7 +469,7 @@ private fun LeafProgressTrack(progress: Float, modifier: Modifier = Modifier) {
             ) {
                 Box(contentAlignment = Alignment.Center) {
                     Icon(
-                        imageVector = PandaWaveIcons.Nature,
+                        painter = painterResource(PandaWaveIcons.Nature.resourceId),
                         contentDescription = null,
                         tint = Color(tokens.colors.onPrimary),
                         modifier = Modifier.size(tokens.components.iconSmall)
@@ -545,7 +546,7 @@ private fun PrimaryPlaybackButton(uiModel: NowPlayingUiModel, modifier: Modifier
 }
 
 @Composable
-private fun TransportRoundAction(icon: ImageVector, contentDescription: String, enabled: Boolean, onClick: () -> Unit) {
+private fun TransportRoundAction(icon: PandaIcon, contentDescription: String, enabled: Boolean, onClick: () -> Unit) {
     val tokens = LocalPandaWaveDesignTokens.current
 
     Surface(
@@ -562,7 +563,7 @@ private fun TransportRoundAction(icon: ImageVector, contentDescription: String, 
             onClick = onClick
         ) {
             Icon(
-                imageVector = icon,
+                painter = painterResource(icon.resourceId),
                 contentDescription = contentDescription,
                 modifier = Modifier.size(tokens.components.iconMedium)
             )
@@ -571,7 +572,7 @@ private fun TransportRoundAction(icon: ImageVector, contentDescription: String, 
 }
 
 @Composable
-private fun SecondaryRoundAction(icon: ImageVector, contentDescription: String, enabled: Boolean, onClick: () -> Unit) {
+private fun SecondaryRoundAction(icon: PandaIcon, contentDescription: String, enabled: Boolean, onClick: () -> Unit) {
     val tokens = LocalPandaWaveDesignTokens.current
 
     Surface(
@@ -588,7 +589,7 @@ private fun SecondaryRoundAction(icon: ImageVector, contentDescription: String, 
             onClick = onClick
         ) {
             Icon(
-                imageVector = icon,
+                painter = painterResource(icon.resourceId),
                 contentDescription = contentDescription,
                 modifier = Modifier.size(tokens.components.iconMedium)
             )
@@ -647,7 +648,7 @@ private fun NowPlayingFooter(
 
 @Composable
 private fun QuickActionButton(
-    icon: ImageVector,
+    icon: PandaIcon,
     label: String,
     enabled: Boolean,
     onClick: () -> Unit,
@@ -675,7 +676,7 @@ private fun QuickActionButton(
                 verticalArrangement = Arrangement.spacedBy(tokens.spacing.xs)
             ) {
                 Icon(
-                    imageVector = icon,
+                    painter = painterResource(icon.resourceId),
                     contentDescription = label,
                     modifier = Modifier.size(tokens.components.iconMedium)
                 )
@@ -710,7 +711,7 @@ private fun VolumeControl(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Icon(
-                imageVector = PandaWaveIcons.VolumeDown,
+                painter = painterResource(PandaWaveIcons.VolumeDown.resourceId),
                 contentDescription = null,
                 tint = Color(tokens.colors.onSurfaceVariant)
             )
@@ -724,7 +725,7 @@ private fun VolumeControl(
                 onValueChange = onVolumeChange
             )
             Icon(
-                imageVector = PandaWaveIcons.VolumeUp,
+                painter = painterResource(PandaWaveIcons.VolumeUp.resourceId),
                 contentDescription = stringResource(
                     R.string.pandawave_now_playing_volume_percent,
                     volume.value.toInt()

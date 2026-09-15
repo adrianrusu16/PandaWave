@@ -80,7 +80,7 @@ internal fun NowPlayingState.withPlaybackState(playback: BambooPlaybackState): N
 private fun BambooPlaybackStatus.toNowPlayingPlaybackState(): NowPlayingPlaybackState = when (this) {
     BambooPlaybackStatus.Playing -> NowPlayingPlaybackState.Playing
     BambooPlaybackStatus.Paused -> NowPlayingPlaybackState.Paused
-    BambooPlaybackStatus.Recovering -> NowPlayingPlaybackState.Playing
+    BambooPlaybackStatus.Recovering -> NowPlayingPlaybackState.Paused
     BambooPlaybackStatus.Ended -> NowPlayingPlaybackState.Ended
     BambooPlaybackStatus.Idle -> NowPlayingPlaybackState.Idle
 }

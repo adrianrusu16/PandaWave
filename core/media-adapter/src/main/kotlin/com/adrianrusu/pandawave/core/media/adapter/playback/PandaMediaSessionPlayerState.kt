@@ -42,7 +42,7 @@ internal object PandaMediaSessionPlayerState {
         queue.alignToMediaId(playback.mediaId)
         val timeline = timeline(playback, queue, artworkUris)
         val currentIndex = timeline.indexOfCurrent(playback.mediaId, queue.currentIndex)
-        val playWhenReady = playback.playWhenReady
+        val playWhenReady = playback.isPlaying
         return PandaMediaSessionPlayerModel(
             availableCommands = BambooMediaSessionCommandPolicy.availableCommandTypes(
                 controls = playback.controls,

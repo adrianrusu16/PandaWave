@@ -21,9 +21,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.Role
+import com.adrianrusu.pandawave.core.designsystem.icons.PandaIcon
 import com.adrianrusu.pandawave.core.designsystem.tokens.LocalPandaWaveDesignTokens
 import com.adrianrusu.pandawave.core.designsystem.tokens.iconMedium
 import com.adrianrusu.pandawave.core.designsystem.tokens.navigationItemHeight
@@ -38,7 +39,7 @@ import com.adrianrusu.pandawave.core.ui.focus.bambooFocusIndicator
 data class BambooNavigationItemModel(
     val id: String,
     val label: String,
-    val icon: ImageVector,
+    val icon: PandaIcon,
     val selected: Boolean,
     val showLabel: Boolean,
     val enabled: Boolean = true
@@ -93,7 +94,7 @@ internal fun BambooNavigationItem(
             verticalArrangement = Arrangement.Center
         ) {
             Icon(
-                imageVector = model.icon,
+                painter = painterResource(model.icon.resourceId),
                 contentDescription = if (model.showLabel) null else model.label,
                 tint = contentColor,
                 modifier = Modifier.size(tokens.components.iconMedium)

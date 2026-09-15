@@ -1,0 +1,7 @@
+scenario,run,seconds
+clean,1,736.8111612
+clean,2,109.2435245
+clean,3,98.5300777
+incremental,1,25.0891501
+incremental,2,8.4703695
+incremental,3,7.9171665

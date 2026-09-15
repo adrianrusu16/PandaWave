@@ -2,10 +2,13 @@ package com.adrianrusu.pandawave.buildlogic
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.artifacts.ExternalModuleDependency
+import org.gradle.api.artifacts.VersionCatalogsExtension
 
 class PandaWaveUiContractPlugin implements Plugin<Project> {
     @Override
     void apply(Project project) {
+        registerMaterialIconsGuard(project)
         project.tasks.register("verifyPandaWaveUiContract", VerifyPandaWaveUiContractTask) {
             group = "verification"
             description = "Verifies the production BambooUI and RRO resource contract."
@@ -59,6 +62,57 @@ class PandaWaveUiContractPlugin implements Plugin<Project> {
                 include "**/*.rs"
                 include "**/*.toml"
             })
+        }
+    }
+
+    private static void registerMaterialIconsGuard(Project project) {
+        def guard = project.tasks.register("verifyNoComposeMaterialIcons", VerifyNoComposeMaterialIconsTask) {
+            group = "verification"
+            description = "Rejects Compose Material Icons imports, dependencies and catalog entries."
+            rootDirectory.set(project.layout.projectDirectory)
+            dependencyViolations.convention([])
+            catalogViolations.convention([])
+        }
+
+        // Snapshot the configured model as strings. The task action must never access Project.
+        project.gradle.projectsEvaluated {
+            Set<String> forbidden = [
+                "androidx.compose.material:material-icons-core",
+                "androidx.compose.material:material-icons-extended"
+            ] as Set
+            List<String> dependencies = []
+            project.allprojects.each { Project module ->
+                module.configurations.each { configuration ->
+                    configuration.dependencies.withType(ExternalModuleDependency).each { dependency ->
+                        String coordinate = "${dependency.group}:${dependency.name}"
+                        if (coordinate in forbidden) {
+                            dependencies.add("${module.path}:${configuration.name} -> ${coordinate}".toString())
+                        }
+                    }
+                }
+                guard.configure {
+                    kotlinSources.from(module.fileTree(module.file("src")) {
+                        include "**/*.kt"
+                        exclude "**/build/**"
+                    })
+                }
+            }
+
+            List<String> catalogs = []
+            def extension = project.extensions.findByType(VersionCatalogsExtension)
+            extension?.each { catalog ->
+                catalog.libraryAliases.each { String alias ->
+                    def dependency = catalog.findLibrary(alias).get().get()
+                    String coordinate = "${dependency.module.group}:${dependency.module.name}"
+                    if (coordinate in forbidden) {
+                        catalogs.add("${alias} -> ${coordinate}".toString())
+                    }
+                }
+            }
+            guard.configure {
+                dependencyViolations.set(dependencies.unique().sort())
+                catalogViolations.set(catalogs.unique().sort())
+            }
         }
     }
 }

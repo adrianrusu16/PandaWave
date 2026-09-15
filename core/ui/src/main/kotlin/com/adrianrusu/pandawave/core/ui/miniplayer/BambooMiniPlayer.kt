@@ -27,9 +27,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.style.TextOverflow
+import com.adrianrusu.pandawave.core.designsystem.icons.PandaWaveIcons
 import com.adrianrusu.pandawave.core.designsystem.tokens.LocalPandaWaveDesignTokens
 import com.adrianrusu.pandawave.core.designsystem.tokens.cardResting
 import com.adrianrusu.pandawave.core.designsystem.tokens.md
@@ -45,7 +47,6 @@ import com.adrianrusu.pandawave.core.ui.artwork.BambooArtwork
 import com.adrianrusu.pandawave.core.ui.artwork.BambooArtworkFallback
 import com.adrianrusu.pandawave.core.ui.focus.bambooBringIntoViewOnFocus
 import com.adrianrusu.pandawave.core.ui.focus.bambooFocusIndicator
-import com.adrianrusu.pandawave.core.ui.icons.PandaWaveIcons
 import com.adrianrusu.pandawave.core.ui.playback.BambooPlayPauseButton
 import com.adrianrusu.pandawave.core.ui.playback.BambooPlaybackControlSize
 import kotlin.time.Duration.Companion.milliseconds
@@ -128,7 +129,7 @@ fun BambooMiniPlayer(
                         onClick = onSkipPreviousClick
                     ) {
                         Icon(
-                            imageVector = PandaWaveIcons.SkipPrevious,
+                            painter = painterResource(PandaWaveIcons.SkipPrevious.resourceId),
                             contentDescription = stringResource(R.string.pandawave_action_skip_previous)
                         )
                     }
@@ -151,7 +152,7 @@ fun BambooMiniPlayer(
                         onClick = onSkipNextClick
                     ) {
                         Icon(
-                            imageVector = PandaWaveIcons.SkipNext,
+                            painter = painterResource(PandaWaveIcons.SkipNext.resourceId),
                             contentDescription = stringResource(R.string.pandawave_action_skip_next)
                         )
                     }

@@ -86,6 +86,23 @@ class InMemoryNowPlayingRepositoryTest {
     }
 
     @Test
+    fun `recovering playback is not shown as actively playing`() {
+        val playback = RecordingPlaybackRepository(
+            initialState = BambooPlaybackState(
+                mediaId = "track-1",
+                title = "The Emptiness Machine",
+                artist = "Linkin Park",
+                playbackStatus = BambooPlaybackStatus.Recovering
+            )
+        )
+        val repository = InMemoryNowPlayingRepository(playbackRepository = playback)
+
+        repository.start()
+
+        assertEquals(NowPlayingPlaybackState.Paused, repository.state.value.playbackState)
+    }
+
+    @Test
     fun `now playing intents forward to shared playback repository`() {
         val playback = RecordingPlaybackRepository()
         val repository = InMemoryNowPlayingRepository(playbackRepository = playback)

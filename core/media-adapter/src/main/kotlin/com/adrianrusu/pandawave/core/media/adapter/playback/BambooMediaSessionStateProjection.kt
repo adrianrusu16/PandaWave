@@ -5,11 +5,13 @@ import androidx.core.net.toUri
 import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
 import com.adrianrusu.pandawave.core.playback.BambooPlaybackState
+import com.adrianrusu.pandawave.core.playback.BambooPlaybackStatus
 
 internal data class BambooMediaSessionStateProjection(
     val mediaItem: MediaItem,
     val playWhenReady: Boolean,
     val positionMillis: Long,
+    val playbackStatus: BambooPlaybackStatus = BambooPlaybackStatus.Idle,
     val volume: Float = 1F,
     val playbackExpiresAtEpochMillis: Long? = null,
     val contentType: String? = null
@@ -18,6 +20,8 @@ internal data class BambooMediaSessionStateProjection(
 internal fun BambooMediaSessionStateProjection.hasSameMediaSessionState(
     other: BambooMediaSessionStateProjection
 ): Boolean = playWhenReady == other.playWhenReady &&
+    playbackStatus == other.playbackStatus &&
+    positionMillis == other.positionMillis &&
     volume == other.volume &&
     playbackExpiresAtEpochMillis == other.playbackExpiresAtEpochMillis &&
     contentType == other.contentType &&
@@ -67,8 +71,9 @@ internal fun BambooPlaybackState.toMediaSessionStateProjection(
                     .build()
             )
             .build(),
-        playWhenReady = playWhenReady,
+        playWhenReady = isPlaying,
         positionMillis = positionMillis.coerceAtLeast(0L),
+        playbackStatus = playbackStatus,
         volume = volume.coerceIn(MIN_VOLUME, MAX_VOLUME),
         playbackExpiresAtEpochMillis = playbackExpiresAtEpochMillis,
         contentType = mimeType

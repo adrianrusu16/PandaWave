@@ -53,6 +53,7 @@ class BambooMediaSessionStateProjectionTest {
         )
         assertEquals(false, projection.mediaItem.mediaMetadata.isBrowsable)
         assertEquals(true, projection.mediaItem.mediaMetadata.isPlayable)
+        assertEquals(BambooPlaybackStatus.Playing, projection.playbackStatus)
         assertTrue(projection.playWhenReady)
         assertEquals(9_000L, projection.positionMillis)
     }
@@ -69,13 +70,13 @@ class BambooMediaSessionStateProjectionTest {
     }
 
     @Test
-    fun `recovering state keeps playWhenReady so the session can route audio`() {
+    fun `recovering state is not reported as actively playing`() {
         val projection = BambooPlaybackState(
             mediaId = "track-1",
             playbackStatus = BambooPlaybackStatus.Recovering
         ).toMediaSessionStateProjection()
 
-        assertTrue(projection.playWhenReady)
+        assertFalse(projection.playWhenReady)
     }
 
     @Test

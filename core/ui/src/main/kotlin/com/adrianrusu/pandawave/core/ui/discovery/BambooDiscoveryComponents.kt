@@ -28,13 +28,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
+import com.adrianrusu.pandawave.core.designsystem.icons.PandaIcon
+import com.adrianrusu.pandawave.core.designsystem.icons.PandaWaveIcons
 import com.adrianrusu.pandawave.core.designsystem.tokens.LocalPandaWaveDesignTokens
 import com.adrianrusu.pandawave.core.designsystem.tokens.cardResting
 import com.adrianrusu.pandawave.core.designsystem.tokens.categoryCardMaxWidth
@@ -68,7 +70,6 @@ import com.adrianrusu.pandawave.core.ui.artwork.BambooArtwork
 import com.adrianrusu.pandawave.core.ui.focus.BambooFocusableLazyRow
 import com.adrianrusu.pandawave.core.ui.focus.bambooBringIntoViewOnFocus
 import com.adrianrusu.pandawave.core.ui.focus.bambooFocusIndicator
-import com.adrianrusu.pandawave.core.ui.icons.PandaWaveIcons
 
 @Composable
 fun BambooSectionHeader(
@@ -161,7 +162,7 @@ fun BambooMediaHeroCard(
                         modifier = Modifier
                             .padding(tokens.spacing.sm)
                             .size(tokens.components.iconSmall),
-                        imageVector = PandaWaveIcons.Play,
+                        painter = painterResource(PandaWaveIcons.Play.resourceId),
                         contentDescription = null
                     )
                 }
@@ -263,7 +264,7 @@ fun BambooMediaListRow(
             )
             if (enabled) {
                 Icon(
-                    imageVector = PandaWaveIcons.Play,
+                    painter = painterResource(PandaWaveIcons.Play.resourceId),
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.primary
                 )
@@ -275,7 +276,7 @@ fun BambooMediaListRow(
 @Composable
 fun BambooCategoryCard(
     category: BambooCategoryItem,
-    icon: ImageVector,
+    icon: PandaIcon,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     accentColor: Color = Color.Unspecified
@@ -321,7 +322,7 @@ fun BambooCategoryCard(
                     modifier = Modifier
                         .padding(tokens.spacing.sm)
                         .size(tokens.components.iconSmall),
-                    imageVector = icon,
+                    painter = painterResource(icon.resourceId),
                     contentDescription = null
                 )
             }
@@ -392,7 +393,7 @@ fun BambooSearchBar(
         textStyle = textStyle,
         leadingIcon = {
             Icon(
-                imageVector = PandaWaveIcons.Search,
+                painter = painterResource(PandaWaveIcons.Search.resourceId),
                 contentDescription = null
             )
         },
@@ -400,7 +401,7 @@ fun BambooSearchBar(
             if (onVoiceClick != null) {
                 IconButton(onClick = onVoiceClick) {
                     Icon(
-                        imageVector = PandaWaveIcons.Microphone,
+                        painter = painterResource(PandaWaveIcons.Microphone.resourceId),
                         contentDescription = stringResource(R.string.pandawave_action_voice_search)
                     )
                 }

@@ -59,7 +59,7 @@ class BambooMediaSessionPlayerTest {
     }
 
     @Test
-    fun `first play publishes engine metadata before exoplayer has a current item`() {
+    fun `recovering playback publishes metadata without active playback`() {
         val playback = BambooPlaybackState(
             mediaId = "track-1",
             title = "Song A",
@@ -77,7 +77,7 @@ class BambooMediaSessionPlayerTest {
         assertEquals("Song A", model.playlist.single().mediaItem.mediaMetadata.title.toString())
         assertEquals("Artist", model.playlist.single().mediaItem.mediaMetadata.artist.toString())
         assertEquals(Player.STATE_BUFFERING, model.playbackState)
-        assertEquals(true, model.playWhenReady)
+        assertEquals(false, model.playWhenReady)
     }
 
     @Test

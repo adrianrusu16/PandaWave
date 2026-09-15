@@ -88,5 +88,11 @@ val detektSource = files(
 tasks.register("qualityCheck") {
     group = "verification"
     description = "Runs Kotlin formatting and static analysis checks."
-    dependsOn("spotlessCheck", "detekt", "verifyPandaWaveIdentity", "verifyPandaWaveUiContract")
+    dependsOn(
+        "spotlessCheck",
+        "detekt",
+        "verifyPandaWaveIdentity",
+        "verifyPandaWaveUiContract",
+        "verifyNoComposeMaterialIcons"
+    )
 }

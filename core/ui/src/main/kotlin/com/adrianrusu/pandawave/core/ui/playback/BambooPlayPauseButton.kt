@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import com.adrianrusu.pandawave.core.designsystem.R
+import com.adrianrusu.pandawave.core.designsystem.icons.PandaWaveIcons
 import com.adrianrusu.pandawave.core.designsystem.tokens.LocalPandaWaveDesignTokens
 import com.adrianrusu.pandawave.core.designsystem.tokens.cardResting
 import com.adrianrusu.pandawave.core.designsystem.tokens.iconLarge
@@ -18,7 +19,6 @@ import com.adrianrusu.pandawave.core.designsystem.tokens.iconMedium
 import com.adrianrusu.pandawave.core.designsystem.tokens.miniPlayerTransportButtonSize
 import com.adrianrusu.pandawave.core.designsystem.tokens.nowPlayingPrimaryButton
 import com.adrianrusu.pandawave.core.ui.focus.bambooBringIntoViewOnFocus
-import com.adrianrusu.pandawave.core.ui.icons.PandaWaveIcons
 
 enum class BambooPlaybackControlSize { MiniPlayer, NowPlaying }
 
@@ -56,7 +56,7 @@ fun BambooPlayPauseButton(
         ) {
             if (playing) {
                 Icon(
-                    imageVector = PandaWaveIcons.Pause,
+                    painter = painterResource(PandaWaveIcons.Pause.resourceId),
                     contentDescription = pauseContentDescription,
                     modifier = Modifier.size(iconSize)
                 )

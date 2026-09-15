@@ -62,7 +62,7 @@ class BambooMediaSessionStateProjectorTest {
     }
 
     @Test
-    fun `position-only changes are not projected to media3`() {
+    fun `position-only changes are projected to media3`() {
         val state = BambooPlaybackState(
             mediaId = "track-1",
             title = "Bamboo Drive",
@@ -81,8 +81,31 @@ class BambooMediaSessionStateProjectorTest {
         projector.start()
         repository.push(state.copy(positionMillis = 4_000L))
 
-        assertEquals(1, sink.projections.size)
-        assertEquals(1_000L, sink.projections.single().positionMillis)
+        assertEquals(2, sink.projections.size)
+        assertEquals(4_000L, sink.projections.last().positionMillis)
+    }
+
+    @Test
+    fun `playback state changes are projected when both states are not playing`() {
+        val state = BambooPlaybackState(
+            mediaId = "track-1",
+            title = "Bamboo Drive",
+            artist = "PandaWave",
+            playbackStatus = BambooPlaybackStatus.Paused,
+            positionMillis = 1_000L
+        )
+        val repository = ProjectorRecordingPlaybackRepository(state)
+        val sink = RecordingMediaSessionStateSink()
+        val projector = BambooMediaSessionStateProjector(
+            playbackRepository = repository,
+            sink = sink,
+            playbackEngineBridge = Media3PlaybackEngineBridge(repository, testTelemetryLogger())
+        )
+
+        projector.start()
+        repository.push(state.copy(playbackStatus = BambooPlaybackStatus.Idle))
+
+        assertEquals(2, sink.projections.size)
     }
 
     @Test

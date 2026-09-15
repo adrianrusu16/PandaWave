@@ -21,7 +21,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.focusRestorer
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -49,9 +48,10 @@ import com.adrianrusu.pandawave.appshell.navigation.primaryDestinations
 import com.adrianrusu.pandawave.appshell.navigation.selectedRailDestination
 import com.adrianrusu.pandawave.appshell.navigation.shouldShowMiniPlayer
 import com.adrianrusu.pandawave.core.designsystem.R as DesignSystemR
+import com.adrianrusu.pandawave.core.designsystem.icons.PandaIcon
+import com.adrianrusu.pandawave.core.designsystem.icons.PandaWaveIcons
 import com.adrianrusu.pandawave.core.designsystem.tokens.LocalPandaWaveDesignTokens
 import com.adrianrusu.pandawave.core.designsystem.tokens.appContentPadding
-import com.adrianrusu.pandawave.core.ui.icons.PandaWaveIcons
 import com.adrianrusu.pandawave.core.ui.miniplayer.BambooMiniPlayer
 import com.adrianrusu.pandawave.core.ui.navigation.BambooNavigationItemModel
 import com.adrianrusu.pandawave.core.ui.navigation.BambooNavigationRail
@@ -314,7 +314,7 @@ private fun AppShellContent(
     }
 }
 
-private val PandaWaveDestination.icon: ImageVector
+private val PandaWaveDestination.icon: PandaIcon
     get() = when (this) {
         HomeDestination -> PandaWaveIcons.Home
         LibraryDestination -> PandaWaveIcons.Library
