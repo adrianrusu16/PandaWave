@@ -31,6 +31,21 @@ PandaEngine communicates with the **Canopy** backend over gRPC through the versi
 
 ---
 
+## ⚡ 60-second reviewer path
+
+| If you want to inspect… | Start here |
+|---|---|
+| 📱 **Real AAOS UI** | [Running on AAOS](#-running-on-aaos) |
+| 🔀 **Android ↔ Rust process boundary** | [Architecture](#️-architecture) and [native engine host](docs/native-engine-host.md) |
+| ▶️ **Playback race/state handling** | [Intent vs observation](#️-playback-intent-vs-observation) |
+| 🔐 **Session/security boundary** | [Secure-session boundary](#-secure-session-boundary) and [secure storage](docs/secure-storage.md) |
+| 🧪 **Evidence and regression coverage** | [Evidence & validation](#-evidence--validation) and [testing guide](docs/testing.md) |
+| 🧭 **Guided project narrative** | [PandaWave case study](https://adrianrusu.dev/projects/pandawave/) |
+
+> **Best read as a boundary-design project:** Android owns platform behavior, Rust owns client-domain decisions, and each asynchronous handoff is made explicit and testable.
+
+---
+
 ## 🎛️ What PandaWave explores
 
 | Area | Focus |
