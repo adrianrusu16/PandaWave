@@ -50,6 +50,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.adrianrusu.pandawave.core.common.log.PandaLog
 import com.adrianrusu.pandawave.core.designsystem.icons.PandaIcon
 import com.adrianrusu.pandawave.core.designsystem.icons.PandaWaveIcons
+import com.adrianrusu.pandawave.core.designsystem.theme.pandaWaveBackground
 import com.adrianrusu.pandawave.core.designsystem.tokens.LocalPandaWaveDesignTokens
 import com.adrianrusu.pandawave.core.designsystem.tokens.appContentPadding
 import com.adrianrusu.pandawave.core.designsystem.tokens.cardResting
@@ -179,7 +180,7 @@ private fun NowPlayingScreen(
 
     Crossfade(
         targetState = nowPlayingMode,
-        modifier = modifier.fillMaxSize(),
+        modifier = modifier.fillMaxSize().pandaWaveBackground(emphasized = true),
         animationSpec = tween(durationMillis = transitionMillis),
         label = AMBIENT_TRANSITION_LABEL
     ) { mode ->

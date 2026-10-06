@@ -8,6 +8,7 @@ pub enum ThemePreference {
     MoonlitBambooDark,
     ForestTechLight,
     ForestTechDark,
+    PandaWavePink,
 }
 
 impl ThemePreference {
@@ -16,6 +17,7 @@ impl ThemePreference {
     pub const MOONLIT_BAMBOO_DARK_WIRE: &'static str = "moonlit_bamboo_dark";
     pub const FOREST_TECH_LIGHT_WIRE: &'static str = "forest_tech_light";
     pub const FOREST_TECH_DARK_WIRE: &'static str = "forest_tech_dark";
+    pub const PANDAWAVE_PINK_WIRE: &'static str = "pandawave_pink";
 
     pub fn from_wire(value: &str) -> Option<Self> {
         match value {
@@ -24,6 +26,7 @@ impl ThemePreference {
             Self::MOONLIT_BAMBOO_DARK_WIRE => Some(Self::MoonlitBambooDark),
             Self::FOREST_TECH_LIGHT_WIRE => Some(Self::ForestTechLight),
             Self::FOREST_TECH_DARK_WIRE => Some(Self::ForestTechDark),
+            Self::PANDAWAVE_PINK_WIRE => Some(Self::PandaWavePink),
             _ => None,
         }
     }
@@ -35,6 +38,7 @@ impl ThemePreference {
             Self::MoonlitBambooDark => Self::MOONLIT_BAMBOO_DARK_WIRE,
             Self::ForestTechLight => Self::FOREST_TECH_LIGHT_WIRE,
             Self::ForestTechDark => Self::FOREST_TECH_DARK_WIRE,
+            Self::PandaWavePink => Self::PANDAWAVE_PINK_WIRE,
         }
     }
 }
@@ -98,7 +102,18 @@ pub fn merge_preferences(
 mod tests {
     use serde_json::json;
 
-    use super::merge_preferences;
+    use super::{merge_preferences, ThemePreference};
+
+    #[test]
+    fn pink_theme_survives_wire_and_storage_round_trip() {
+        let theme = ThemePreference::from_wire("pandawave_pink").expect("pink theme is supported");
+        assert_eq!(theme.as_wire(), "pandawave_pink");
+        let stored = serde_json::to_string(&theme).unwrap();
+        assert_eq!(
+            serde_json::from_str::<ThemePreference>(&stored).unwrap(),
+            theme
+        );
+    }
 
     #[test]
     fn updating_known_theme_preserves_unknown_keys() {

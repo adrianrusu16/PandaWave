@@ -3,6 +3,7 @@ package com.adrianrusu.pandawave.core.designsystem.tokens
 import android.content.Context
 import android.content.res.Resources
 import androidx.annotation.ColorRes
+import androidx.annotation.FractionRes
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
@@ -23,8 +24,20 @@ class ResourceDesignTokenProvider(context: Context) {
             onSurface = color(themeId.colorResources.onSurface),
             surfaceVariant = color(themeId.colorResources.surfaceVariant),
             onSurfaceVariant = color(themeId.colorResources.onSurfaceVariant),
-            ambientVisualizerActive = color(R.color.pandawave_ambient_visualizer_active),
-            ambientVisualizerIdle = color(R.color.pandawave_ambient_visualizer_idle),
+            ambientVisualizerActive = color(
+                if (themeId == PandaWaveThemeId.PandaWavePink) {
+                    R.color.pandawave_theme_pink_primary
+                } else {
+                    R.color.pandawave_ambient_visualizer_active
+                }
+            ),
+            ambientVisualizerIdle = color(
+                if (themeId == PandaWaveThemeId.PandaWavePink) {
+                    R.color.pandawave_theme_pink_glow
+                } else {
+                    R.color.pandawave_ambient_visualizer_idle
+                }
+            ),
             ambientVisualizerIdleAlpha =
                 fraction(R.fraction.pandawave_ambient_visualizer_idle_alpha),
             ambientVisualizerActiveMinAlpha =
@@ -32,7 +45,12 @@ class ResourceDesignTokenProvider(context: Context) {
             ambientVisualizerActiveMaxAlpha =
                 fraction(R.fraction.pandawave_ambient_visualizer_active_max_alpha),
             error = color(themeId.colorResources.error),
-            onError = color(themeId.colorResources.onError)
+            onError = color(themeId.colorResources.onError),
+            backgroundGlow = color(themeId.colorResources.backgroundGlow),
+            playbackControl = color(themeId.colorResources.playbackControl),
+            onPlaybackControl = color(themeId.colorResources.onPlaybackControl),
+            outlineAlpha = themeId.colorResources.outlineAlpha?.let(::fraction) ?: 1f,
+            outlineVariantAlpha = themeId.colorResources.outlineVariantAlpha?.let(::fraction) ?: 1f
         ),
         typography = PandaWaveTypographyTokens(
             display = textStyle(
@@ -225,11 +243,34 @@ private data class ColorTokenResourceIds(
     @param:ColorRes val surfaceVariant: Int,
     @param:ColorRes val onSurfaceVariant: Int,
     @param:ColorRes val error: Int,
-    @param:ColorRes val onError: Int
+    @param:ColorRes val onError: Int,
+    @param:ColorRes val backgroundGlow: Int = surface,
+    @param:ColorRes val playbackControl: Int = primary,
+    @param:ColorRes val onPlaybackControl: Int = onPrimary,
+    @param:FractionRes val outlineAlpha: Int? = null,
+    @param:FractionRes val outlineVariantAlpha: Int? = null
 )
 
 private val PandaWaveThemeId.colorResources: ColorTokenResourceIds
     get() = when (this) {
+        PandaWaveThemeId.PandaWavePink -> ColorTokenResourceIds(
+            primary = R.color.pandawave_theme_pink_primary,
+            onPrimary = R.color.pandawave_theme_pink_on_primary,
+            secondary = R.color.pandawave_theme_pink_secondary,
+            onSecondary = R.color.pandawave_theme_pink_on_secondary,
+            surface = R.color.pandawave_theme_pink_surface,
+            onSurface = R.color.pandawave_theme_pink_on_surface,
+            surfaceVariant = R.color.pandawave_theme_pink_surface_container_high,
+            onSurfaceVariant = R.color.pandawave_theme_pink_on_surface_variant,
+            error = R.color.pandawave_theme_pink_error,
+            onError = R.color.pandawave_theme_pink_on_error,
+            backgroundGlow = R.color.pandawave_theme_pink_glow,
+            playbackControl = R.color.pandawave_theme_pink_secondary,
+            onPlaybackControl = R.color.pandawave_theme_pink_on_secondary,
+            outlineAlpha = R.fraction.pandawave_theme_pink_outline_alpha,
+            outlineVariantAlpha = R.fraction.pandawave_theme_pink_outline_variant_alpha
+        )
+
         PandaWaveThemeId.BambooGroveLight -> ColorTokenResourceIds(
             primary = R.color.pandawave_theme_bamboo_grove_light_primary,
             onPrimary = R.color.pandawave_theme_bamboo_grove_light_on_primary,

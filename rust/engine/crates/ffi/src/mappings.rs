@@ -176,6 +176,7 @@ pub(crate) fn theme_preference_to_ffi(theme: ThemePreference) -> i32 {
         ThemePreference::MoonlitBambooDark => FFI_THEME_MOONLIT_BAMBOO_DARK,
         ThemePreference::ForestTechLight => FFI_THEME_FOREST_TECH_LIGHT,
         ThemePreference::ForestTechDark => FFI_THEME_FOREST_TECH_DARK,
+        ThemePreference::PandaWavePink => FFI_THEME_PANDAWAVE_PINK,
     }
 }
 

@@ -22,7 +22,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.focusRestorer
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -47,11 +46,13 @@ import com.adrianrusu.pandawave.appshell.navigation.navigationId
 import com.adrianrusu.pandawave.appshell.navigation.primaryDestinations
 import com.adrianrusu.pandawave.appshell.navigation.selectedRailDestination
 import com.adrianrusu.pandawave.appshell.navigation.shouldShowMiniPlayer
-import com.adrianrusu.pandawave.core.designsystem.R as DesignSystemR
 import com.adrianrusu.pandawave.core.designsystem.icons.PandaIcon
 import com.adrianrusu.pandawave.core.designsystem.icons.PandaWaveIcons
+import com.adrianrusu.pandawave.core.designsystem.icons.pandaWaveLogoPainter
+import com.adrianrusu.pandawave.core.designsystem.theme.pandaWaveBackground
 import com.adrianrusu.pandawave.core.designsystem.tokens.LocalPandaWaveDesignTokens
 import com.adrianrusu.pandawave.core.designsystem.tokens.appContentPadding
+import com.adrianrusu.pandawave.core.designsystem.tokens.iconLarge
 import com.adrianrusu.pandawave.core.ui.miniplayer.BambooMiniPlayer
 import com.adrianrusu.pandawave.core.ui.navigation.BambooNavigationItemModel
 import com.adrianrusu.pandawave.core.ui.navigation.BambooNavigationRail
@@ -135,6 +136,7 @@ fun AppShellScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
+                .pandaWaveBackground()
         ) {
             val navigationItems = primaryDestinations.map { destination ->
                 BambooNavigationItemModel(
@@ -148,7 +150,7 @@ fun AppShellScreen(
             if (chrome.showNavigationRail) {
                 BambooNavigationRail(
                     items = navigationItems,
-                    logo = painterResource(DesignSystemR.drawable.pandawave_ic_logo),
+                    logo = pandaWaveLogoPainter(LocalPandaWaveDesignTokens.current.components.iconLarge),
                     logoContentDescription = stringResource(
                         R.string.pandawave_navigation_open_now_playing
                     ),

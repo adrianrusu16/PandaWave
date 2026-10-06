@@ -36,6 +36,10 @@ enum class PandaWaveThemeId(val displayName: String, val isDark: Boolean) {
     ForestTechDark(
         displayName = "Forest Tech Dark",
         isDark = true
+    ),
+    PandaWavePink(
+        displayName = "PandaWave Pink",
+        isDark = true
     )
 }
 
@@ -86,7 +90,13 @@ fun PandaWaveTheme(
         LocalPandaWaveThemeProfile provides themeProfile
     ) {
         MaterialTheme(
-            colorScheme = tokens.colors.toColorScheme(themeProfile.isDark),
+            colorScheme = tokens.colors.toColorScheme(themeProfile.isDark).let { scheme ->
+                if (themeProfile.id == PandaWaveThemeId.PandaWavePink) {
+                    scheme.withPinkSurfaces(tokens.colors)
+                } else {
+                    scheme
+                }
+            },
             shapes = shapes,
             typography = typography,
             content = content
@@ -113,7 +123,36 @@ fun PandaWaveThemePreference.toThemeProfile(systemDark: Boolean): PandaWaveTheme
 
     PandaWaveThemePreference.ForestTechDark ->
         PandaWaveThemeProfile(id = PandaWaveThemeId.ForestTechDark)
+
+    PandaWaveThemePreference.PandaWavePink ->
+        PandaWaveThemeProfile(id = PandaWaveThemeId.PandaWavePink)
 }
+
+private fun ColorScheme.withPinkSurfaces(colors: PandaWaveColorTokens): ColorScheme = copy(
+    primaryContainer = Color(colors.backgroundGlow),
+    onPrimaryContainer = Color(colors.onSurface),
+    secondaryContainer = Color(colors.surfaceVariant),
+    onSecondaryContainer = Color(colors.secondary),
+    tertiary = Color(colors.secondary),
+    onTertiary = Color(colors.onSecondary),
+    tertiaryContainer = Color(colors.backgroundGlow),
+    onTertiaryContainer = Color(colors.onSurface),
+    background = Color(colors.surface),
+    onBackground = Color(colors.onSurface),
+    surfaceDim = Color(colors.surface),
+    surfaceBright = Color(colors.surfaceVariant),
+    surfaceContainerLowest = Color(colors.surface),
+    surfaceContainerLow = Color(colors.surface),
+    surfaceContainer = Color(colors.surfaceVariant),
+    surfaceContainerHigh = Color(colors.surfaceVariant),
+    surfaceContainerHighest = Color(colors.surfaceVariant),
+    surfaceTint = Color(colors.primary),
+    inverseSurface = Color(colors.secondary),
+    inverseOnSurface = Color(colors.onSecondary),
+    inversePrimary = Color(colors.backgroundGlow),
+    outline = Color(colors.onSurfaceVariant).copy(alpha = colors.outlineAlpha),
+    outlineVariant = Color(colors.onSurfaceVariant).copy(alpha = colors.outlineVariantAlpha)
+)
 
 private fun PandaWaveColorTokens.toColorScheme(darkTheme: Boolean): ColorScheme {
     val primary = Color(this.primary)

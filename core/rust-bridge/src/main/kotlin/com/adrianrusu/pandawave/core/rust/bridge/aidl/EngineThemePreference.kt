@@ -12,6 +12,7 @@ data class EngineThemePreference(
         const val THEME_MOONLIT_BAMBOO_DARK = "moonlit_bamboo_dark"
         const val THEME_FOREST_TECH_LIGHT = "forest_tech_light"
         const val THEME_FOREST_TECH_DARK = "forest_tech_dark"
+        const val THEME_PANDAWAVE_PINK = "pandawave_pink"
 
         const val SOURCE_UNINITIALIZED = "uninitialized"
         const val SOURCE_LOCAL_CACHE = "local_cache"

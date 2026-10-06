@@ -181,6 +181,7 @@ internal object PandaEngineNativeSnapshotMapper {
         THEME_MOONLIT_BAMBOO_DARK -> EngineThemePreference.THEME_MOONLIT_BAMBOO_DARK
         THEME_FOREST_TECH_LIGHT -> EngineThemePreference.THEME_FOREST_TECH_LIGHT
         THEME_FOREST_TECH_DARK -> EngineThemePreference.THEME_FOREST_TECH_DARK
+        THEME_PANDAWAVE_PINK -> EngineThemePreference.THEME_PANDAWAVE_PINK
         else -> EngineThemePreference.THEME_SYSTEM_DEFAULT
     }
 
@@ -235,6 +236,7 @@ internal object PandaEngineNativeSnapshotMapper {
     private const val THEME_MOONLIT_BAMBOO_DARK = 2
     private const val THEME_FOREST_TECH_LIGHT = 3
     private const val THEME_FOREST_TECH_DARK = 4
+    private const val THEME_PANDAWAVE_PINK = 5
 
     private const val PREFERENCE_SOURCE_LOCAL_CACHE = 1
     private const val PREFERENCE_SOURCE_LOCAL_USER = 2

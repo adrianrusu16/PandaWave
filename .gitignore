@@ -23,6 +23,21 @@ local.properties
 # Local Codex/Superpowers working docs
 docs/superpowers/
 
+# Local build homes, assistant state, and generated evidence
+/.android-home/
+/.gradle-home/
+/.codex/
+/.serena/
+/graphify-out/
+/artifacts/
+/rust/.idea/
+
+# Local exploration scripts, captures, and downloaded design references
+/.tmp-*.sh
+/logcat_capture.txt
+/ui.xml
+/stitch_pandawave_media_player.zip
+
 # Local Rust toolchain and scratch target directories
 /.cargo-home/
 /.rustup-home/

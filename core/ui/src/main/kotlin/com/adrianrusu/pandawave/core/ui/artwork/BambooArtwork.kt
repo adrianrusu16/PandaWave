@@ -16,14 +16,13 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import coil3.compose.SubcomposeAsyncImage
 import coil3.compose.SubcomposeAsyncImageContent
 import coil3.request.ErrorResult
 import coil3.request.ImageRequest
 import coil3.request.SuccessResult
 import com.adrianrusu.pandawave.core.common.log.PandaLog
-import com.adrianrusu.pandawave.core.designsystem.R as DesignSystemR
+import com.adrianrusu.pandawave.core.designsystem.icons.pandaWaveLogoPainter
 import com.adrianrusu.pandawave.core.designsystem.tokens.LocalPandaWaveDesignTokens
 import com.adrianrusu.pandawave.core.designsystem.tokens.md
 import com.adrianrusu.pandawave.core.designsystem.tokens.touchTargetLg
@@ -131,7 +130,7 @@ internal fun BambooArtworkLogoPlate(accentColor: Color, modifier: Modifier = Mod
             contentAlignment = Alignment.Center
         ) {
             Image(
-                painter = painterResource(DesignSystemR.drawable.pandawave_ic_logo),
+                painter = pandaWaveLogoPainter(tokens.sizing.touchTargetLg),
                 contentDescription = null,
                 modifier = Modifier.size(tokens.sizing.touchTargetLg),
                 contentScale = ContentScale.Fit

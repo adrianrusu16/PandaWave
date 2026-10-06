@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="pandawave_theme_pink_primary">#FF58AE</color>
+    <color name="pandawave_theme_pink_on_primary">#270D1E</color>
+    <color name="pandawave_theme_pink_secondary">#FAD6EE</color>
+    <color name="pandawave_theme_pink_on_secondary">#271422</color>
+    <color name="pandawave_theme_pink_surface">#060B10</color>
+    <color name="pandawave_theme_pink_on_surface">#FFF5FB</color>
+    <color name="pandawave_theme_pink_surface_container_high">#19212B</color>
+    <color name="pandawave_theme_pink_on_surface_variant">#D6C5D2</color>
+    <color name="pandawave_theme_pink_glow">#632140</color>
+    <color name="pandawave_theme_pink_error">#FFB4AB</color>
+    <color name="pandawave_theme_pink_on_error">#690005</color>
+    <item name="pandawave_theme_pink_outline_alpha" type="fraction">60%</item>
+    <item name="pandawave_theme_pink_outline_variant_alpha" type="fraction">25%</item>
+</resources>

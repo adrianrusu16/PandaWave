@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pandawave_settings_theme_pandawave_pink">PandaWave Pink</string>
+    <string name="pandawave_settings_theme_pandawave_pink_description">Midnight surfaces, pink accents, and a soft rose glow in Now Playing.</string>
+</resources>

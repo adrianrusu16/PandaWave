@@ -4,9 +4,21 @@ import com.adrianrusu.pandawave.core.model.theme.PandaWaveThemePreference
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
 class PandaWaveThemePreferenceTest {
+    @Test
+    fun `pink preference restores a dark profile regardless of system mode`() {
+        val preference = assertNotNull(PandaWaveThemePreference.fromWireOrNull("pandawave_pink"))
+
+        for (systemDark in listOf(false, true)) {
+            val profile = preference.toThemeProfile(systemDark)
+            assertEquals("PandaWave Pink", profile.id.displayName)
+            assertTrue(profile.isDark)
+        }
+    }
+
     @Test
     fun `system default uses light profile when system is light`() {
         val profile = PandaWaveThemePreference.SystemDefault.toThemeProfile(systemDark = false)

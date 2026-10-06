@@ -1,6 +1,5 @@
 package com.adrianrusu.pandawave.feature.nowplaying
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -20,6 +19,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.text.style.TextOverflow
+import com.adrianrusu.pandawave.core.designsystem.theme.pandaWaveBackground
 import com.adrianrusu.pandawave.core.designsystem.tokens.LocalPandaWaveDesignTokens
 import com.adrianrusu.pandawave.core.designsystem.tokens.ambientArtworkMaxSize
 import com.adrianrusu.pandawave.core.designsystem.tokens.ambientArtworkMinSize
@@ -46,7 +46,7 @@ fun NowPlayingAmbientScreen(
     BoxWithConstraints(
         modifier = modifier
             .fillMaxSize()
-            .background(Color(tokens.colors.surface))
+            .pandaWaveBackground(emphasized = true)
             .clickable(
                 onClickLabel = actionLabel,
                 onClick = onShowPlaybackControls

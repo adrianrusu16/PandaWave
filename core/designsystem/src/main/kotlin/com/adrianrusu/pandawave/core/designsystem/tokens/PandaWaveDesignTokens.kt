@@ -35,7 +35,12 @@ data class PandaWaveColorTokens(
     val ambientVisualizerActiveMinAlpha: Float,
     val ambientVisualizerActiveMaxAlpha: Float,
     @param:ColorInt val error: Int,
-    @param:ColorInt val onError: Int
+    @param:ColorInt val onError: Int,
+    @param:ColorInt val backgroundGlow: Int = surface,
+    @param:ColorInt val playbackControl: Int = primary,
+    @param:ColorInt val onPlaybackControl: Int = onPrimary,
+    val outlineAlpha: Float = 1f,
+    val outlineVariantAlpha: Float = 1f
 )
 
 data class PandaWaveSpacingTokens(val xsPx: Int, val smPx: Int, val mdPx: Int, val lgPx: Int, val xlPx: Int)

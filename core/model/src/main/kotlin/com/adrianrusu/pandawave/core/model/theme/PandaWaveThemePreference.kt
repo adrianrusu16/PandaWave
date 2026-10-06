@@ -5,7 +5,8 @@ enum class PandaWaveThemePreference(val wireValue: String) {
     BambooGroveLight("bamboo_grove_light"),
     MoonlitBambooDark("moonlit_bamboo_dark"),
     ForestTechLight("forest_tech_light"),
-    ForestTechDark("forest_tech_dark");
+    ForestTechDark("forest_tech_dark"),
+    PandaWavePink("pandawave_pink");
 
     companion object {
         fun fromWireOrNull(value: String): PandaWaveThemePreference? = entries.firstOrNull { preference ->

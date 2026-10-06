@@ -294,6 +294,10 @@ private fun ThemePreferenceCard(
         ThemePreferenceOption(
             preference = PandaWaveThemePreference.ForestTechDark,
             label = stringResource(R.string.pandawave_settings_theme_forest_tech_dark)
+        ),
+        ThemePreferenceOption(
+            preference = PandaWaveThemePreference.PandaWavePink,
+            label = stringResource(R.string.pandawave_settings_theme_pandawave_pink)
         )
     )
 
@@ -358,6 +362,9 @@ private fun PandaWaveThemePreference.localizedLabel(): String = when (this) {
 
     PandaWaveThemePreference.ForestTechDark ->
         stringResource(R.string.pandawave_settings_theme_forest_tech_dark)
+
+    PandaWaveThemePreference.PandaWavePink ->
+        stringResource(R.string.pandawave_settings_theme_pandawave_pink)
 }
 
 @Composable
@@ -376,4 +383,7 @@ private fun PandaWaveThemePreference.localizedDescription(): String = when (this
 
     PandaWaveThemePreference.ForestTechDark ->
         stringResource(R.string.pandawave_settings_theme_forest_tech_dark_description)
+
+    PandaWaveThemePreference.PandaWavePink ->
+        stringResource(R.string.pandawave_settings_theme_pandawave_pink_description)
 }

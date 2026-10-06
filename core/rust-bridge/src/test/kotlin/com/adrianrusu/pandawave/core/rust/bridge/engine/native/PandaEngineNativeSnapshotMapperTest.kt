@@ -14,6 +14,16 @@ import kotlin.test.assertTrue
 
 class PandaEngineNativeSnapshotMapperTest {
     @Test
+    fun `pink theme from native engine keeps its persisted identifier`() {
+        val nativeValues = LongArray(62)
+        nativeValues[25] = 5L
+
+        val snapshot = PandaEngineNativeSnapshotMapper.toProjection(nativeValues).snapshot
+
+        assertEquals("pandawave_pink", snapshot.themePreference.themeId)
+    }
+
+    @Test
     fun `native values map to rich engine snapshot`() {
         val projection = PandaEngineNativeSnapshotMapper.toProjection(
             longArrayOf(
