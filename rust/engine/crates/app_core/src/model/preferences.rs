@@ -102,7 +102,7 @@ pub fn merge_preferences(
 mod tests {
     use serde_json::json;
 
-    use super::{merge_preferences, ThemePreference};
+    use super::{ThemePreference, merge_preferences};
 
     #[test]
     fn pink_theme_survives_wire_and_storage_round_trip() {
