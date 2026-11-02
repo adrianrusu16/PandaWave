@@ -34,6 +34,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
 
       - name: Start Android fast timer
         run: echo "CI_ANDROID_FAST_START=$(date +%s)" >> "$GITHUB_ENV"
