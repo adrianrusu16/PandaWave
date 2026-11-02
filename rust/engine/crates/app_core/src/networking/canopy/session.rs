@@ -484,7 +484,7 @@ impl SessionCoordinator {
 
     fn advance_generation(&self) -> Result<u64, EngineError> {
         self.generation
-            .fetch_update(Ordering::AcqRel, Ordering::Acquire, |current| {
+            .try_update(Ordering::AcqRel, Ordering::Acquire, |current| {
                 current.checked_add(1)
             })
             .map(|previous| previous + 1)
