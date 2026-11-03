@@ -63,6 +63,8 @@ android {
         )
     ) { "pandawave.verificationAppLinkHost must be a DNS hostname without a scheme or path." }
 
+    ndkVersion = providers.gradleProperty("pandaEngine.androidNdkVersion").get()
+
     defaultConfig {
         manifestPlaceholders["verificationAppLinkHost"] = verificationAppLinkHost
         buildConfigField("String", "VERIFICATION_APP_LINK_HOST", "\"$verificationAppLinkHost\"")
@@ -172,6 +174,6 @@ dependencies {
     testRuntimeOnly(libs.junit.platform.launcher)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
 }
