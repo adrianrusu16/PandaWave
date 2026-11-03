@@ -47,9 +47,12 @@ class PandaEngineCanopyLiveTest {
             assertFalse(browseResult.snapshot.hasError)
             assertTrue(browseResult.snapshot.browseResultsCount > 0)
 
-            val track = (0 until browseResult.snapshot.browseResultsCount)
-                .mapNotNull(engine::browseResult)
-                .firstOrNull { item -> item.itemType == EngineCatalogItem.TYPE_TRACK }
+            val track = engine.browseResultsPage(
+                offset = 0,
+                limit = browseResult.snapshot.browseResultsCount
+            ).firstOrNull { item ->
+                item.itemType == EngineCatalogItem.TYPE_TRACK
+            }
             assertNotNull("Canopy local fixtures must expose a playable track", track)
 
             val playbackResult = engine.dispatch(
